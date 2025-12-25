@@ -8,8 +8,8 @@
         { "kind": "package", "name": "meson" },
         { "kind": "package", "name": "gcc" },
         { "kind": "shell", "script": [
-            "if hyprpm list | grep -q '\\bhyprexpo\\b'; then",
-            "  echo 'hyprexpo already present; skipping.'",
+            "if hyprpm list | awk 'prev ~ /hyprexpo/ && $0 ~ /enabled:[[:space:]]*true/ { exit 0 } { prev=$0 } END { exit 1 }'; then",
+            "  echo 'hyprexpo already installed and enabled; skipping.'",
             "  exit 0",
             "fi",
             "hyprpm update",
