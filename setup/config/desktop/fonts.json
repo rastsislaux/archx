@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "description": "Fonts",
+  "commands": [
+    { "kind": "package", "name": "noto-fonts" },
+    { "kind": "package", "name": "otf-font-awesome" }
+  ]
+}
+
+

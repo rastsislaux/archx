@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "description": "Core apps",
+  "commands": [
+    { "kind": "package", "name": "nano" },
+    { "kind": "package", "name": "lite-xl" },
+    { "kind": "package", "name": "kitty" },
+    { "kind": "package", "name": "git" }
+  ]
+}
+
+

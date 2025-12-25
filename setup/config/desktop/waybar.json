@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "description": "Waybar",
+  "commands": [
+    { "kind": "package", "name": "waybar" },
+    { "kind": "symlink", "source": "config/waybar", "target": "~/.config/waybar" }
+  ]
+}
+
+

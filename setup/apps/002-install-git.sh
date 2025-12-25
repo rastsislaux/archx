@@ -1,2 +1,0 @@
-sudo pacman -S git
-
