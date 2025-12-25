@@ -11,31 +11,42 @@ This directory contains a small, declarative setup runner for Arch Linux.
 Run everything:
 
 ```bash
-./setup/run.sh
+./setup/archx
 ```
 
 Dry-run (log what would happen):
 
 ```bash
-./setup/run.sh --dry-run
+./setup/archx --dry-run
 ```
 
 Non-interactive (never prompt; default is to **skip** symlink conflicts):
 
 ```bash
-./setup/run.sh --non-interactive
+./setup/archx --non-interactive
 ```
 
 ## Command kinds
 
 ### package
 
-Ensures a pacman package is installed.
+Ensures a package is installed.
 
 Example:
 
 ```json
 { "kind": "package", "name": "greetd" }
+```
+
+Backends:
+
+- default: `pacman`
+- AUR: `yay`
+
+Example (AUR):
+
+```json
+{ "kind": "package", "backend": "yay", "name": "thorium-browser-bin" }
 ```
 
 ### symlink
@@ -63,11 +74,30 @@ Example:
 { "kind": "service", "name": "greetd.service" }
 ```
 
+### shell
+
+Runs a small bash script (single session, so `cd` works across lines).
+
+Example:
+
+```json
+{
+  "kind": "shell",
+  "stdout": true,
+  "stderr": true,
+  "script": [
+    "echo hello",
+    "pwd"
+  ]
+}
+```
+
 ## Backends
 
 Backends are pluggable per command:
 
 - `package`: `pacman`
+- `package`: `yay` (AUR)
 - `service`: `systemctl`
 - `symlink`: `ln`
 
