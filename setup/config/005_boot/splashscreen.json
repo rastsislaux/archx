@@ -3,11 +3,7 @@
     "description": "Splashscreen",
     "commands": [
         { "kind": "package", "name": "plymouth" },
-        { "kind": "package", "name": "plymouth-theme-bgrt" },
         { "kind": "symlink", "source": "config/mkinitcpio/000_plymouth.conf", "target": "/etc/mkinitcpio.conf.d/000_plymouth.conf" },
-        { "kind": "shell", "script": [
-            "plymouth-set-default-theme -R bgrt",
-            "mkinitcpio -P"
-        ] }
+        { "kind": "shell", "script": "mkinitcpio -P" }
     ]
 }
