@@ -13,7 +13,7 @@
             "  exit 0",
             "fi",
             "hyprpm update",
-            "hyprpm add https://github.com/hyprwm/hyprland-plugins",
+            "echo y | hyprpm add https://github.com/hyprwm/hyprland-plugins",
             "hyprpm enable hyprexpo"
         ] }
     ]
