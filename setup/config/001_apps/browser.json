@@ -1,0 +1,7 @@
+{
+    "version": 1,
+    "description": "Browser",
+    "commands": [
+        { "kind": "package", "backend": "yay", "name": "thorium-browser-bin" }
+    ]
+}

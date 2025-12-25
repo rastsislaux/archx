@@ -4,7 +4,6 @@
     "commands": [
         { "kind": "package", "name": "cpio" },
         { "kind": "package", "name": "cmake" },
-        { "kind": "package", "name": "git" },
         { "kind": "package", "name": "meson" },
         { "kind": "package", "name": "gcc" },
         { "kind": "shell", "stdout": true, "stderr": true, "script": [
