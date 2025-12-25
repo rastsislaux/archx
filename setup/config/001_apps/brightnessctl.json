@@ -1,0 +1,7 @@
+{
+    "version": 1,
+    "description": "Brightnessctl",
+    "commands": [
+        { "kind": "package", "name": "brightnessctl" }
+    ]
+}
