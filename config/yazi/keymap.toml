@@ -1,0 +1,11 @@
+[[mgr.prepend_keymap]]
+on = "!"
+for = "unix"
+run = 'shell "kitty --detach &"'
+desc = "Open $SHELL here"
+
+[[mgr.prepend_keymap]]
+on = "@"
+for = "unix"
+run = 'shell "nohup $@ >/dev/null 2>&1 &"'
+desc = "Run"
