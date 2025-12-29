@@ -5,12 +5,15 @@ import logging
 from pathlib import Path
 
 from archx_setup.config_loader import load_config_file
-from archx_setup.core import CommandFactory, Options, build_context
+from archx_setup.core import Options, build_context
+from archx_setup.plugins.factory import CommandFactory
+from archx_setup.plugins.loader import load_plugins
 from archx_setup.util import xdg_config_home
 
 
-def _discover_json_files(config_dir: Path) -> list[Path]:
-    files = [p for p in config_dir.rglob("*.json") if p.is_file()]
+def _discover_config_files(config_dir: Path) -> list[Path]:
+    exts = {".json", ".toml", ".yaml", ".yml"}
+    files = [p for p in config_dir.rglob("*") if p.is_file() and p.suffix.lower() in exts]
     files.sort(key=lambda p: str(p))
     return files
 
@@ -32,7 +35,15 @@ def main(argv: list[str] | None = None) -> int:
         "--config-dir",
         type=Path,
         required=True,
-        help="Directory containing *.json config files (loaded recursively).",
+        help="Directory containing config files (loaded recursively). Supported: *.json, *.toml, *.yaml, *.yml",
+    )
+    parser.add_argument(
+        "--plugins-dir",
+        action="append",
+        type=Path,
+        default=[],
+        help="Directory containing additional command plugins (*.py). Can be specified multiple times. "
+        "Also supports ARCHX_SETUP_PLUGINS_DIRS and ~/.config/archx-setup/plugins.",
     )
     parser.add_argument(
         "--dry-run",
@@ -79,12 +90,44 @@ def main(argv: list[str] | None = None) -> int:
         logger=logger,
     )
 
-    files = _discover_json_files(config_dir)
+    loaded_plugins = load_plugins(plugin_dirs=list(args.plugins_dir))
+    for err in loaded_plugins.errors:
+        logger.warning("%s", err)
+    factory = CommandFactory(loaded_plugins.plugins)
+    # Info-level visibility into plugin wiring (useful for debugging command resolution).
+    plugins_sorted = sorted(
+        loaded_plugins.plugins,
+        key=lambda p: (getattr(p, "name", ""), p.__class__.__name__),
+    )
+    logger.info("Loaded %d command plugins:", len(plugins_sorted))
+    for p in plugins_sorted:
+        plugin_name = getattr(p, "name", "?")
+        try:
+            handlers = p.handlers()
+        except Exception as e:
+            logger.info("- %s: failed to list handlers: %s", plugin_name, e)
+            continue
+
+        pairs = ", ".join(f"{h.kind}/{h.backend}" for h in handlers)
+        ok, reason = p.is_available(ctx)
+        if ok:
+            logger.info("- %s for %s", plugin_name, pairs)
+        else:
+            logger.info(
+                "- %s for %s [UNAVAILABLE: %s]",
+                plugin_name,
+                pairs,
+                reason or "unknown reason",
+            )
+    logger.debug("Registered command handlers: %s", ", ".join(factory.registered_handlers))
+
+    files = _discover_config_files(config_dir)
     if not files:
-        logger.warning("No *.json config files found under %s", config_dir)
+        logger.warning("No config files found under %s (supported: *.json, *.toml, *.yaml, *.yml)", config_dir)
         return 0
 
-    factory = CommandFactory()
+    logger.info("")
+    logger.info("=== Configuring ({} files) ===".format(len(files)))
     for path in files:
         rel = path.relative_to(config_dir)
         try:
@@ -94,14 +137,17 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         desc = loaded.description or rel.as_posix()
         ver = loaded.version if loaded.version is not None else "?"
-        logger.info("==> %s v%s @ %s", desc, ver, rel.as_posix())
+        logger.info("# %s v%s @ %s", desc, ver, rel.as_posix())
         for i, raw in enumerate(loaded.commands, start=1):
             try:
-                cmd = factory.from_dict(raw)
+                cmd = factory.from_dict(raw, ctx)
             except Exception as e:
                 raise RuntimeError(f"Invalid command in {path} (index {i}): {e}") from e
             msg = cmd.apply(ctx)
-            logger.info("%s", msg)
+            if i == len(loaded.commands):
+                logger.info("└─ %s", msg)
+            else:
+                logger.info("├─ %s", msg)
 
     logger.info("Done.")
     return 0

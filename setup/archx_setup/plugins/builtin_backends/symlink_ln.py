@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import logging
 import os
 import shutil
-import logging
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -142,5 +142,6 @@ class LnSymlinkBackend:
                 return f"Replaced symlink {tgt} -> {src}."
             if choice in {"a", "abort"}:
                 raise RuntimeError(f"Aborted by user due to conflict at {tgt}")
+
 
 

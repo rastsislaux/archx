@@ -3,8 +3,13 @@
 This directory contains a small, declarative setup runner for Arch Linux.
 
 - Config files live in `setup/config/` and are loaded **recursively**.
-- Each `*.json` file contains a list of command objects (or `{ "version": 1, "commands": [...] }`).
+- Supported formats: `*.json`, `*.toml`, `*.yaml`, `*.yml`.
+  - JSON and TOML work out of the box.
+  - YAML requires `PyYAML` (install: `python -m pip install pyyaml`).
+- Each config file contains a list of command objects (or `{ "version": 1, "commands": [...] }`).
 - The runner is **idempotent**: it checks current state before changing anything.
+
+Example configs in other formats live under `setup/config_examples/` (they are **not** executed by default).
 
 ## Quick start
 
@@ -92,19 +97,47 @@ Example:
 }
 ```
 
-## Backends
+## Backends / executors
 
-Backends are pluggable per command:
+Command execution is implemented by plugins selected by `(kind, backend)`.
 
-- `package`: `pacman`
-- `package`: `yay` (AUR)
-- `service`: `systemctl`
-- `symlink`: `ln`
+Built-in executors:
+- `package`:
+  - default backend: `pacman`
+  - AUR backend: `yay`
+- `service`:
+  - default backend: `systemctl`
+- `symlink`:
+  - default backend: `ln`
+- `shell`:
+  - default backend: `bash`
 
 You can override via `backend` in a command object, e.g.:
 
 ```json
 { "kind": "package", "name": "git", "backend": "pacman" }
 ```
+
+## Command plugins (runtime-loaded)
+
+Command kinds are implemented as **plugins**, loaded at runtime. Built-in plugins provide:
+- `package`
+- `service`
+- `symlink`
+- `shell`
+
+You can add new command kinds without changing core code by dropping a `*.py` file into one of:
+- `~/.config/archx-setup/plugins/` (auto-discovered if present)
+- any directory passed via `--plugins-dir`
+- any directory listed in `ARCHX_SETUP_PLUGINS_DIRS` (path-separated)
+
+Each plugin file must define either:
+- `PLUGIN = ...` (preferred), or
+- `def get_plugin(): ...`
+
+For a stable plugin SDK (types + utilities like `CommandRunner`), use:
+- `archx_setup.plugin_api`
+
+See `setup/plugins_example/echo.py` for a minimal example.
 
 

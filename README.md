@@ -32,7 +32,7 @@ Dry-run:
 ## How to customize (recommended workflow)
 
 - Fork this repo.
-- Edit JSON files in `setup/config/`:
+- Edit config files in `setup/config/` (`*.json`, `*.toml`, `*.yaml`, `*.yml`):
   - add/remove packages
   - add/remove symlinks into your dotfiles
   - enable services
