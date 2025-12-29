@@ -2,6 +2,7 @@
     "version": 1,
     "description": "Browser",
     "commands": [
-        { "kind": "package", "backend": "yay", "name": "thorium-browser-bin" }
+        { "kind": "package", "backend": "yay", "name": "thorium-browser-bin" },
+        { "kind": "shell", "script": "xdg-settings set default-web-browser thorium-browser.desktop" }
     ]
 }
