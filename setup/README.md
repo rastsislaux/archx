@@ -138,6 +138,6 @@ Each plugin file must define either:
 For a stable plugin SDK (types + utilities like `CommandRunner`), use:
 - `archx_setup.plugin_api`
 
-See `setup/plugins_example/echo.py` for a minimal example.
+See `setup/plugins/hyprpm.py` for an example plugin implementation.
 
 
