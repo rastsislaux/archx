@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=Hyprland (logs to screen)
-Comment=Hyprland (stdout/stderr visible on TTY)
-Type=Application
-Exec=Hyprland
-
