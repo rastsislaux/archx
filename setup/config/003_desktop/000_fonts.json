@@ -3,8 +3,7 @@
   "description": "Fonts",
   "commands": [
     { "kind": "package", "name": "noto-fonts" },
-    { "kind": "package", "name": "otf-font-awesome" }
+    { "kind": "package", "name": "otf-font-awesome" },
+    { "kind": "package", "name": "noto-fonts-emoji" }
   ]
 }
-
-
