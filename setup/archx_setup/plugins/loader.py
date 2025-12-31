@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import os
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 from types import ModuleType
@@ -23,7 +24,15 @@ def _load_plugin_module_from_file(py_file: Path, *, module_name: str) -> ModuleT
     if spec is None or spec.loader is None:
         raise ImportError(f"Could not load plugin module from {py_file}")
     mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
+    # Ensure the module is visible in sys.modules during execution.
+    # Python 3.14's dataclasses may consult sys.modules[__module__] while
+    # processing class annotations, and will crash if the module isn't registered.
+    sys.modules[module_name] = mod
+    try:
+        spec.loader.exec_module(mod)
+    except Exception:
+        sys.modules.pop(module_name, None)
+        raise
     return mod
 
 
