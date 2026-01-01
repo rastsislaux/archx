@@ -1,0 +1,18 @@
+# ===================== Install Plymouth =====================
+# Plymouth is a boot splash screen.
+# By default it uses BGRT theme that displays OEM, OS logos and a spinning wheel.
+
+# TODO: For now requires manual tweak in kernel parameters (enable splash & quiet)
+
+version = 1
+description = "Boot"
+
+[[package]]
+name = "plymouth"
+
+[[symlink]]
+source = "dotfiles/mkinitcpio/000_plymouth.conf"
+target = "/etc/mkinitcpio.conf.d/000_plymouth.conf"
+
+[[shell]]
+script = "sudo mkinitcpio -P"

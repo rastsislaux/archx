@@ -1,7 +1,0 @@
-{
-    "version": 1,
-    "description": "Wallpaper",
-    "commands": [
-        { "kind": "package", "name": "hyprpaper" }
-    ]
-}

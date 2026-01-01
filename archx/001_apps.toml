@@ -1,0 +1,28 @@
+# ===================== Install Apps =====================
+# This block installs the some basic apps, such as browser, 
+# terminal, editor, file manager, etc.
+
+version = 1
+description = "Apps"
+
+[[packages]]
+names = [
+    "brightnessctl",
+    "chromium",
+    "nano",
+    "lite-xl",
+    "kitty",
+    "networkmanager",
+    "yazi",
+    "swayimg"
+]
+
+[[symlink]]
+source = "dotfiles/yazi"
+target = "~/.config/yazi"
+
+[[shell]]
+script = "xdg-settings set default-web-browser chromium.desktop"
+
+[[service]]
+name = "NetworkManager.service"

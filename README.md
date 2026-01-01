@@ -20,31 +20,31 @@ Think “a NixOS-like workflow”, but:
 From the repo root:
 
 ```bash
-./setup/archx
+./archx-install
 ```
 
 Dry-run:
 
 ```bash
-./setup/archx --dry-run
+./archx-install --dry-run
 ```
 
 ## How to customize (recommended workflow)
 
 - Fork this repo.
-- Edit config files in `setup/config/` (`*.json`, `*.toml`, `*.yaml`, `*.yml`):
+- Edit config files in `archx/` (`*.toml`, `*.json`, `*.yaml`, `*.yml`):
   - add/remove packages
   - add/remove symlinks into your dotfiles
   - enable services
   - keep changes idempotent (commands should be safe to re-run)
-- Keep actual dotfiles/config payloads in `config/` and reference them via `kind: "symlink"`.
+- Keep actual dotfiles/config payloads in `dotfiles/` and reference them via `[[symlink]] source = "dotfiles/..."`.
 
 ## What changes does `archx-setup` apply?
 
 Important notes:
 
 - The exact outcome depends on your flags (e.g. `--symlink-conflict`) and any saved decisions in `${XDG_CONFIG_HOME:-~/.config}/archx-setup/decisions.json`.
-- Some steps are implemented as `kind: shell` scripts (see below).
+- Some steps are implemented as `[[shell]]` scripts (see below).
 
 ### Components (what you get)
 
@@ -54,10 +54,11 @@ Important notes:
 | Hyprland plugins | `hyprpm` + `hyprexpo` |
 | Panel | `waybar` |
 | Notifications | `swaync` |
-| Browser | `thorium-browser-bin` (AUR via `yay`) |
+| Browser | `chromium` |
 | Terminal | `kitty` |
 | Editor | `lite-xl` |
 | File manager | `yazi` |
+| Image viewer | `swayimg` |
 | Display manager | `greetd` + `greetd-tuigreet` |
 | Screenshots | `grimblast-git` (AUR via `yay`) |
 | AUR helper | `yay` |
@@ -75,11 +76,12 @@ Important notes:
 
 ### Packages installed (complete list)
 
-The following packages are ensured to be installed by the configs under `setup/config/`:
+The following packages are ensured to be installed by the configs under `archx/`:
 
 - **pacman**:
   - `base-devel`
   - `brightnessctl`
+  - `chromium`
   - `cmake`
   - `cpio`
   - `gcc`
@@ -98,14 +100,16 @@ The following packages are ensured to be installed by the configs under `setup/c
   - `nano`
   - `networkmanager`
   - `noto-fonts`
+  - `noto-fonts-emoji`
   - `npm`
   - `otf-font-awesome`
+  - `plymouth`
+  - `swayimg`
   - `swaync`
   - `waybar`
   - `yazi`
 - **yay** (AUR):
   - `grimblast-git`
-  - `thorium-browser-bin`
   - `vicinae-bin`
 
 ### Services enabled
@@ -117,12 +121,13 @@ The following packages are ensured to be installed by the configs under `setup/c
 
 These are ensured as symlinks (if the target path is free or you choose to replace it):
 
-- `~/.config/archx` -> `config/archx`
-- `~/.config/hypr` -> `config/hypr`
-- `~/.config/swaync` -> `config/swaync`
-- `~/.config/vicinae` -> `config/vicinae`
-- `~/.config/waybar` -> `config/waybar`
-- `~/.config/yazi` -> `config/yazi`
-- `/etc/greetd` -> `config/greetd`
+- `~/.config/archx` -> `dotfiles/archx`
+- `~/.config/hypr` -> `dotfiles/hypr`
+- `~/.config/swaync` -> `dotfiles/swaync`
+- `~/.config/vicinae` -> `dotfiles/vicinae`
+- `~/.config/waybar` -> `dotfiles/waybar`
+- `~/.config/yazi` -> `dotfiles/yazi`
+- `/etc/greetd` -> `dotfiles/greetd`
+- `/etc/mkinitcpio.conf.d/000_plymouth.conf` -> `dotfiles/mkinitcpio/000_plymouth.conf`
 
  

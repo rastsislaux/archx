@@ -1,7 +1,0 @@
-{
-    "version": 1,
-    "description": "Screenshots",
-    "commands": [
-        { "kind": "package", "backend": "yay", "name": "grimblast-git" }
-    ]
-}

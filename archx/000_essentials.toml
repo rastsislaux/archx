@@ -1,0 +1,21 @@
+# ===================== Install Essentials =====================
+# This block installs the essentials for the setup.
+
+version = 1
+description = "Prerequisistes for the setup"
+
+[[packages]]
+names = ["git", "base-devel", "npm"]
+
+[[shell]]
+script = """
+if command -v yay >/dev/null 2>&1; then
+  echo 'yay is already installed; skipping.'
+  exit 0
+fi
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si --noconfirm
+cd ..
+rm -rf yay-bin
+"""

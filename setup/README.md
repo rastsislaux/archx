@@ -140,4 +140,41 @@ For a stable plugin SDK (types + utilities like `CommandRunner`), use:
 
 See `setup/plugins/hyprpm.py` for an example plugin implementation.
 
+## TOML config syntax (recommended)
+
+TOML supports the classic explicit list style:
+
+```toml
+version = 1
+description = "Example"
+
+[[commands]]
+kind = "package"
+name = "git"
+```
+
+It also supports a more TOML-native style using “kind tables”:
+
+```toml
+version = 1
+description = "Example"
+
+[[package]]
+name = "git"
+
+[[packages]]
+names = ["base-devel", "npm"]
+
+[[symlink]]
+source = "dotfiles/swaync"
+target = "~/.config/swaync"
+
+[[shell]]
+script = """echo hello"""
+```
+
+For non-builtin plugins you can either:
+- use a kind table like `[[hyprpm]] ...` (the table name becomes `kind`), or
+- use `[[command]]` with an explicit `kind = "..."` (best if you care about strict ordering across kinds).
+
 

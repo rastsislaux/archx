@@ -1,9 +1,0 @@
-{
-    "version": 1,
-    "description": "Swaync",
-    "commands": [
-        { "kind": "package", "name": "swaync" },
-        { "kind": "package", "name": "libnotify" },
-        { "kind": "symlink", "source": "config/swaync", "target": "~/.config/swaync" }
-    ]
-}

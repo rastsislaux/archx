@@ -1,0 +1,43 @@
+version = 1
+description = "Prerequisites for the setup (TOML kind tables example)"
+
+[[package]]
+name = "git"
+
+[[packages]]
+names = ["base-devel", "npm"]
+
+[[packages]]
+backend = "yay"
+names = ["grimblast-git"]
+
+[[symlink]]
+source = "dotfiles/swaync"
+target = "~/.config/swaync"
+
+[[shell]]
+stdout = true
+stderr = true
+script = """
+if command -v yay >/dev/null 2>&1; then
+  echo 'yay is already installed; skipping.'
+  exit 0
+fi
+echo 'install yay here...'
+"""
+
+# For non-builtin plugins, you can either use a kind table:
+[[hyprpm]]
+repo = "hyprland-plugins"
+repo_url = "https://github.com/hyprwm/hyprland-plugins"
+plugin = "hyprexpo"
+
+# ...or use fully generic commands (keeps strict ordering across kinds):
+#
+# [[command]]
+# kind = "hyprpm"
+# repo = "hyprland-plugins"
+# repo_url = "https://github.com/hyprwm/hyprland-plugins"
+# plugin = "hyprexpo"
+
+

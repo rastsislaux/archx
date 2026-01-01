@@ -1,7 +1,0 @@
-{
-    "version": 1,
-    "description": "Archx specific configuration",
-    "commands": [
-        { "kind": "symlink", "source": "config/archx", "target": "~/.config/archx" }
-    ]
-}

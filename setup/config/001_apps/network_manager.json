@@ -1,8 +1,0 @@
-{
-    "version": 1,
-    "description": "Network Manager",
-    "commands": [
-        { "kind": "package", "name": "networkmanager" },
-        { "kind": "service", "name": "NetworkManager.service" }
-    ]
-}

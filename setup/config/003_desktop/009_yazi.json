@@ -1,8 +1,0 @@
-{
-    "version": 1,
-    "description": "Yazi (file manager)",
-    "commands": [
-        { "kind": "package", "name": "yazi" },
-        { "kind": "symlink", "source": "config/yazi", "target": "~/.config/yazi" }
-    ]
-}

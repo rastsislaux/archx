@@ -1,0 +1,11 @@
+# ===================== Archx specific configuration =====================
+# This block contains the Archx specific configuration.
+# For now it is required to set wallpapers, and contains some scripts
+# for lock screen and editor.
+
+version = 1
+description = "Archx specific configuration"
+
+[[symlink]]
+source = "dotfiles/archx"
+target = "~/.config/archx"

@@ -1,0 +1,71 @@
+version = 1
+description = "Desktop"
+
+# ========== Install Hyprland and desktop environment software ==========
+# Hyprland is a Wayland compositor, combined with other software installed
+# in this block it provides a minimal desktop environment experience.
+
+[[packages]]
+names = [
+    "hyprland",
+    # fonts
+    "noto-fonts", "otf-font-awesome", "noto-fonts-emoji",
+    # wallpaper
+    "hyprpaper",
+    # panel
+    "waybar",
+    # lockscreen
+    "jq", "hyprlock", "hypridle",
+    # notifications
+    "swaync", "libnotify"
+]
+
+# Some software is installed from the AUR.
+[[packages]]
+backend = "yay"
+names = ["grimblast-git", "vicinae-bin"]
+# =======================================================================
+
+# =============== Create symlinks to dotfiles ================
+# Symlinks are created to the dotfiles in the repo, which
+# allows to easily manage the config files via git and share
+# it between machines.
+
+[[symlink]]
+source = "dotfiles/hypr"
+target = "~/.config/hypr"
+
+[[symlink]]
+source = "dotfiles/swaync"
+target = "~/.config/swaync"
+
+[[symlink]]
+source = "dotfiles/vicinae"
+target = "~/.config/vicinae"
+
+[[symlink]]
+source = "dotfiles/waybar"
+target = "~/.config/waybar"
+#=============================================================
+
+# ========== Install Vicinae extensions ==========
+# Vicinae extensions are installed from the official repository.
+# https://github.com/vicinaehq/extensions
+
+[[vicinae-extension-store]]
+names = ["wifi-commander", "bluetooth", "pulseaudio"]#
+# ================================================
+
+# ========== Install hyprland plugins ==========
+# Hyprland plugins are built from source,
+# so we need to install some build dependencies.
+
+[[packages]]
+names = ["cpio", "cmake", "meson", "gcc"]
+
+[[hyprpm]]
+repo = "hyprland-plugins"
+repo_url = "https://github.com/hyprwm/hyprland-plugins"
+plugin = "hyprexpo"
+# ===============================================
+

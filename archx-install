@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "[archx-setup] python3 not found; installing via pacman..."
+  sudo pacman -S --noconfirm --needed python
+fi
+
+SETUP_DIR="$SCRIPT_DIR/setup"
+CONFIG_DIR="$SCRIPT_DIR/archx"
+
+export PYTHONPATH="$SETUP_DIR${PYTHONPATH:+:$PYTHONPATH}"
+PLUGINS_ARGS=()
+if [ -d "$SETUP_DIR/plugins" ]; then
+  PLUGINS_ARGS+=(--plugins-dir "$SETUP_DIR/plugins")
+fi
+exec python3 -m archx_setup --config-dir "$CONFIG_DIR" "${PLUGINS_ARGS[@]}" "$@"

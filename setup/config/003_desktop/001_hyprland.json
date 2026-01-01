@@ -1,8 +1,0 @@
-{
-  "version": 1,
-  "description": "Hyprland compositor",
-  "commands": [
-    { "kind": "package", "name": "hyprland" },
-    { "kind": "symlink", "source": "config/hypr", "target": "~/.config/hypr" }
-  ]
-}

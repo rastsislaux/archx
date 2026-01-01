@@ -1,9 +1,0 @@
-{
-    "version": 1,
-    "description": "Lock screen",
-    "commands": [
-        { "kind": "package", "name": "jq" },
-        { "kind": "package", "name": "hyprlock" },
-        { "kind": "package", "name": "hypridle" }
-    ]
-}
