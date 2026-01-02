@@ -10,8 +10,6 @@ names = [
     "hyprland",
     # fonts
     "noto-fonts", "otf-font-awesome", "noto-fonts-emoji",
-    # wallpaper
-    "hyprpaper",
     # panel
     "waybar",
     # lockscreen
@@ -23,7 +21,14 @@ names = [
 # Some software is installed from the AUR.
 [[packages]]
 backend = "yay"
-names = ["grimblast-git", "vicinae-bin"]
+names = [
+    # screenshots
+    "grimblast-git",
+    # app launcher
+    "vicinae-bin",
+    # wallpaper daemon
+    "awww-git"
+]
 # =======================================================================
 
 # =============== Create symlinks to dotfiles ================
@@ -46,6 +51,7 @@ target = "~/.config/vicinae"
 [[symlink]]
 source = "dotfiles/waybar"
 target = "~/.config/waybar"
+
 #=============================================================
 
 # ========== Install Vicinae extensions ==========
