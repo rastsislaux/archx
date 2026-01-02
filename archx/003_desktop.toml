@@ -70,7 +70,7 @@ names = ["wifi-commander", "bluetooth", "pulseaudio"]#
 names = ["cpio", "cmake", "meson", "gcc"]
 
 [[hyprpm]]
-repo = "hyprland-plugins"
+repo = "hyprland-plugins (by hyprwm)"
 repo_url = "https://github.com/hyprwm/hyprland-plugins"
 plugin = "hyprexpo"
 # ===============================================
