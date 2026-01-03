@@ -23,6 +23,7 @@
 
 * {
   font-family: "Liberation Sans", "Inter", "Noto Sans", "DejaVu Sans", sans-serif;
+  font-size: 11pt;
   color: #e0e0e0;
 }
 
@@ -38,12 +39,13 @@ box#body {
   background-color: rgba(20, 20, 30, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 16px;
-  padding: 28px;
+  padding: 20px;
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
 }
 
 label {
   color: #e0e0e0;
+  margin: 4px 0px;
 }
 
 label.title,
@@ -58,8 +60,9 @@ spinbutton,
 textview {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 12px;
-  padding: 8px 10px;
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin: 4px 0px;
 }
 
 entry:focus,
@@ -73,8 +76,9 @@ textview:focus {
 button {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 12px;
-  padding: 8px 12px;
+  border-radius: 8px;
+  padding: 4px 10px;
+  margin: 4px 0px;
   box-shadow: none;
 }
 
@@ -97,8 +101,9 @@ combobox {
 combobox button {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 12px;
-  padding: 8px 10px;
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin: 4px 0px;
   box-shadow: none;
 }
 
@@ -125,8 +130,9 @@ menu box {
 
 modelbutton,
 menuitem {
-  border-radius: 12px;
-  padding: 8px 10px;
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin: 2px 0px;
 }
 
 modelbutton:hover,
