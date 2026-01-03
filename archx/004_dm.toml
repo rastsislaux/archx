@@ -6,7 +6,7 @@ version = 1
 description = "Display manager (greetd)"
 
 [[packages]]
-names = ["greetd", "gtkgreet"]
+names = ["greetd", "greetd-gtkgreet"]
 
 [[symlink]]
 source = "dotfiles/greetd"
