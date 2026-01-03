@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-set -eu
-
-# Start Hyprland with logs on the greeter TTY (useful for debugging).
-exec start-hyprland

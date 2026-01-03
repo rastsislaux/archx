@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Hyprland
-Comment=Hyprland (logs)
-Type=Application
-Exec=sh -lc 'XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"; mkdir -p "$XDG_STATE_HOME/hyprland"; exec start-hyprland >>"$XDG_STATE_HOME/hyprland/hyprland.log" 2>&1'
