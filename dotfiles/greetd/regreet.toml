@@ -6,7 +6,7 @@
 
 [background]
 # You can replace this with your own file (e.g. under /etc/greetd/).
-path = "/etc/greetd/wallpaper/zenitsu.jpg"
+path = "/etc/archx/greeter/wallpaper/zenitsu.jpg"
 fit = "Cover"
 
 # Environment variables passed to created sessions (optional).

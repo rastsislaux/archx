@@ -14,7 +14,7 @@ target = "/etc/greetd"
 
 [[symlink]]
 source = "dotfiles/archx/wallpaper"
-target = "/etc/greetd/wallpaper"
+target = "/etc/archx/greeter/wallpaper"
 
 [[service]]
 name = "greetd.service"
