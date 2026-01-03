@@ -26,6 +26,19 @@ class LnSymlinkBackend:
     def _needs_sudo_for_target(self, target: Path) -> bool:
         return not can_write_path(target)
 
+    def _ensure_target_parent_dir(self, target: Path) -> None:
+        parent = target.parent
+        if parent.exists():
+            if not parent.is_dir():
+                raise RuntimeError(f"Symlink target parent exists but is not a directory: {parent}")
+            return
+
+        sudo = self._needs_sudo_for_target(parent)
+        if sudo:
+            self.runner.run(["mkdir", "-p", str(parent)], sudo=True, check=True)
+        else:
+            parent.mkdir(parents=True, exist_ok=True)
+
     def _remove_target(self, target: Path, *, sudo: bool) -> None:
         # Prefer stdlib removal when possible; fall back to rm when permissions require sudo.
         if not sudo:
@@ -93,6 +106,7 @@ class LnSymlinkBackend:
                 return f"Symlink {tgt} already points to {src}."
 
         if not tgt.exists() and not tgt.is_symlink():
+            self._ensure_target_parent_dir(tgt)
             sudo = self._needs_sudo_for_target(tgt)
             self.runner.run(["ln", "-sn", str(src), str(tgt)], sudo=sudo, check=True)
             return f"Created symlink {tgt} -> {src}."
@@ -116,6 +130,7 @@ class LnSymlinkBackend:
             return f"Skipped symlink {tgt} (conflict)."
 
         if mode == "replace":
+            self._ensure_target_parent_dir(tgt)
             sudo = self._needs_sudo_for_target(tgt)
             self._remove_target(tgt, sudo=sudo)
             self.runner.run(["ln", "-sn", str(src), str(tgt)], sudo=sudo, check=True)
@@ -136,6 +151,7 @@ class LnSymlinkBackend:
                 self.decisions.set_symlink_ignore(target=str(tgt))
                 return f"Symlink {tgt} is ignored (saved decision)."
             if choice in {"r", "replace"}:
+                self._ensure_target_parent_dir(tgt)
                 sudo = self._needs_sudo_for_target(tgt)
                 self._remove_target(tgt, sudo=sudo)
                 self.runner.run(["ln", "-sn", str(src), str(tgt)], sudo=sudo, check=True)
