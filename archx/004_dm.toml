@@ -6,11 +6,19 @@ version = 1
 description = "Display manager (greetd)"
 
 [[packages]]
-names = ["greetd", "greetd-regreet"]
+names = ["greetd", "gtkgreet"]
 
 [[symlink]]
 source = "dotfiles/greetd"
 target = "/etc/greetd"
+
+[[symlink]]
+source = "dotfiles/greetd/bin/archx-hyprland"
+target = "/usr/local/bin/archx-hyprland"
+
+[[symlink]]
+source = "dotfiles/greetd/bin/archx-hyprland-logs"
+target = "/usr/local/bin/archx-hyprland-logs"
 
 [[symlink]]
 source = "dotfiles/archx/wallpaper"

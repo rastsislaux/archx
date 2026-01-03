@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+set -eu
+
+# Start Hyprland with logs redirected to a per-user file (avoid spewing onto the greeter TTY).
+XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+mkdir -p "$XDG_STATE_HOME/hyprland"
+exec start-hyprland >>"$XDG_STATE_HOME/hyprland/hyprland.log" 2>&1
+
+

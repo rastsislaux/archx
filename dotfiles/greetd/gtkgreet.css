@@ -1,0 +1,131 @@
+/* gtkgreet theme (Archx "liquid glass")
+ *
+ * Apply via: gtkgreet -l -s /etc/greetd/gtkgreet.css
+ * Background uses the shared greeter wallpaper symlink created by archx:
+ *   /etc/archx/greeter/wallpaper -> dotfiles/archx/wallpaper
+ *
+ * Reference for gtkgreet styling mechanics:
+ * - https://man.sr.ht/~kennylevinsen/greetd/ (see "Styling gtkgreet")
+ */
+
+:root {
+  --archx-bg: rgba(20, 20, 30, 0.78);
+  --archx-border: rgba(255, 255, 255, 0.10);
+  --archx-hover: rgba(255, 255, 255, 0.08);
+  --archx-hover-strong: rgba(255, 255, 255, 0.12);
+  --archx-text: #e0e0e0;
+  --archx-text-strong: #ffffff;
+}
+
+* {
+  font-family: "Liberation Sans", "Inter", "Noto Sans", "DejaVu Sans", sans-serif;
+  color: var(--archx-text);
+}
+
+window {
+  background-image: url("file:///etc/archx/greeter/wallpaper/zenitsu.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* The central container in gtkgreet is typically box#body (per greetd docs). */
+box#body {
+  background: var(--archx-bg);
+  border: 1px solid var(--archx-border);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+}
+
+label {
+  color: var(--archx-text);
+}
+
+label.title,
+label.heading {
+  color: var(--archx-text-strong);
+  font-weight: 700;
+}
+
+/* Inputs */
+entry,
+spinbutton,
+textview {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--archx-border);
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+
+entry:focus,
+spinbutton:focus,
+textview:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Buttons */
+button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--archx-border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: none;
+}
+
+button:hover {
+  background: var(--archx-hover);
+}
+
+button:active,
+button:checked {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Combobox: avoid "double wrapper" by styling only the inner button. */
+combobox {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+combobox button {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--archx-border);
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: none;
+}
+
+combobox button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Dropdown popovers/menus */
+popover,
+menu {
+  background: rgba(20, 20, 30, 0.92);
+  border: 1px solid var(--archx-border);
+  border-radius: 16px;
+}
+
+popover frame,
+popover box,
+menu frame,
+menu box {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+modelbutton,
+menuitem {
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+
+modelbutton:hover,
+menuitem:hover {
+  background: var(--archx-hover-strong);
+}
