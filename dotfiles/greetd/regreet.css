@@ -43,7 +43,6 @@ frame,
 /* Inputs */
 entry,
 textview,
-combobox,
 spinbutton {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--archx-border);
@@ -54,10 +53,29 @@ spinbutton {
 
 entry:focus,
 textview:focus,
-combobox:focus,
 spinbutton:focus {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Comboboxes are usually a wrapper + an inner button.
+   Style only the inner button to avoid the "double wrapper" look. */
+combobox {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+combobox button {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--archx-border);
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: none;
+}
+
+combobox button:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Buttons */
@@ -109,6 +127,18 @@ popover .container,
 popover .content,
 popover .background,
 popover .main {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+menu frame,
+menu box,
+menu .card,
+menu .container,
+menu .content,
+menu .background,
+menu .main {
   background: transparent;
   border: none;
   box-shadow: none;

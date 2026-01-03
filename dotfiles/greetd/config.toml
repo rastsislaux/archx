@@ -8,5 +8,5 @@ vt = 1
 #
 # Use /etc/greetd/sessions (symlinked from dotfiles/greetd/sessions) as the first session dir,
 # so we can override or add sessions easily.
-command = "env SESSION_DIRS=/etc/greetd/sessions:/usr/share/xsessions:/usr/share/wayland-sessions start-hyprland -- -c /etc/greetd/hyprland-regreet.conf"
+command = "env SESSION_DIRS=/etc/greetd/sessions start-hyprland -- -c /etc/greetd/hyprland-regreet.conf"
 user = "rastsislau"

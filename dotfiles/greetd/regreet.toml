@@ -16,7 +16,7 @@ fit = "Cover"
 application_prefer_dark_theme = true
 
 # Match the rest of the desktop (waybar/swaync use Liberation Sans / Inter-like stack).
-font_name = "Liberation Sans 13"
+font_name = "Liberation Sans 10"
 
 # Keep defaults unless you customize them system-wide.
 cursor_theme_name = "Adwaita"
