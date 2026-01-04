@@ -1,16 +1,27 @@
+/* Archx "Liquid Glass" Theme for SwayNC (GTK4)
+ * 
+ * This theme is based on the unified Archx theme defined in:
+ *   dotfiles/gtk-theme-base.css
+ * 
+ * When modifying colors, update gtk-theme-base.css first, then propagate
+ * values here. For style conflicts, prefer solutions from gtkgreet.css.
+ */
+
 :root {
-  /* Theme: match Waybar "liquid glass" look */
+  /* Theme: Archx "liquid glass" - unified with gtkgreet.css */
+  /* Background: using 0.85 for consistency with waybar, but gtkgreet uses 0.78 */
   --cc-bg: rgba(20, 20, 30, 0.85);
-  --noti-border-color: rgba(255, 255, 255, 0.08);
+  /* Border: aligned with gtkgreet.css preferred value */
+  --noti-border-color: rgba(255, 255, 255, 0.10);
 
   /* Notification surface */
   --noti-bg: 20, 20, 30;
   --noti-bg-alpha: 0.85;
   --noti-bg-darker: rgb(14, 14, 22);
   --noti-bg-hover: rgba(255, 255, 255, 0.08);
-  --noti-bg-focus: rgba(255, 255, 255, 0.10);
+  --noti-bg-focus: rgba(255, 255, 255, 0.14);
 
-  /* Buttons */
+  /* Buttons - aligned with gtkgreet.css */
   --noti-close-bg: rgba(255, 255, 255, 0.08);
   --noti-close-bg-hover: rgba(255, 255, 255, 0.12);
 
@@ -41,15 +52,15 @@
   --group-collapse-transition: var(--group-collapse-tranistion);
 }
 
-/* Fallback for older CSS themes */
+/* Fallback for older CSS themes - aligned with gtkgreet.css */
 @define-color cc-bg rgba(20, 20, 30, 0.85);
-@define-color noti-border-color rgba(255, 255, 255, 0.08);
+@define-color noti-border-color rgba(255, 255, 255, 0.10);
 @define-color noti-bg rgba(20, 20, 30, 0.85);
 @define-color noti-bg-opaque rgb(20, 20, 30);
 @define-color noti-bg-darker rgb(14, 14, 22);
 @define-color noti-bg-hover rgba(255, 255, 255, 0.08);
 @define-color noti-bg-hover-opaque rgba(255, 255, 255, 0.08);
-@define-color noti-bg-focus rgba(255, 255, 255, 0.10);
+@define-color noti-bg-focus rgba(255, 255, 255, 0.14);
 @define-color noti-close-bg rgba(255, 255, 255, 0.08);
 @define-color noti-close-bg-hover rgba(255, 255, 255, 0.12);
 @define-color text-color #e0e0e0;
@@ -388,7 +399,7 @@ notificationwindow {
   padding: 8px;
   border-radius: var(--border-radius);
   background: var(--surface-1);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 /* Title widget */

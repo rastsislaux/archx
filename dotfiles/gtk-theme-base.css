@@ -1,0 +1,127 @@
+/* Archx "Liquid Glass" GTK Theme Base
+ * =====================================
+ *
+ * This file serves as the single source of truth for the Archx "liquid glass"
+ * theme used across all GTK-based applications in this dotfiles repository.
+ *
+ * USAGE:
+ * ------
+ * Since GTK CSS doesn't support @import directives, this file serves as a
+ * reference palette. When modifying theme colors or common styles, update
+ * this file first, then propagate the values to:
+ *
+ *   - dotfiles/swaync/style.css      (GTK4 - uses CSS custom properties)
+ *   - dotfiles/greetd/gtkgreet.css   (GTK3 - uses explicit values, PREFERRED)
+ *   - dotfiles/waybar/style.css      (Waybar - uses explicit values)
+ *
+ * When there are style mismatches, prefer the solutions from gtkgreet.css
+ * as it is the most up-to-date reference implementation.
+ *
+ * COLOR PALETTE:
+ * --------------
+ * All colors use the "liquid glass" aesthetic: dark semi-transparent backgrounds
+ * with subtle white overlays for borders and hover effects.
+ *
+ * Base Colors:
+ *   - Background (panel/surface): rgba(20, 20, 30, 0.78-0.85)
+ *   - Background darker: rgb(14, 14, 22)
+ *   - Border: rgba(255, 255, 255, 0.10)
+ *   - Border subtle: rgba(255, 255, 255, 0.08)
+ *
+ * Interactive States:
+ *   - Hover: rgba(255, 255, 255, 0.08)
+ *   - Hover strong: rgba(255, 255, 255, 0.12)
+ *   - Focus/Active: rgba(255, 255, 255, 0.14)
+ *   - Surface (input fields): rgba(255, 255, 255, 0.04)
+ *
+ * Text Colors:
+ *   - Text normal: #e0e0e0
+ *   - Text strong: #ffffff
+ *   - Text disabled: rgba(224, 224, 224, 0.55)
+ *
+ * Shadows:
+ *   - Standard: 0 4px 20px rgba(0, 0, 0, 0.3)
+ *   - Strong: 0 6px 30px rgba(0, 0, 0, 0.35)
+ *
+ * TYPOGRAPHY:
+ * -----------
+ * Font Family: "Liberation Sans", "Inter", "Noto Sans", "DejaVu Sans", sans-serif
+ * Base Font Size: 11pt (GTK3) / 12px (Waybar) / 15px (GTK4 body)
+ *
+ * SPACING & SIZING:
+ * -----------------
+ * Border Radius:
+ *   - Large (panels/containers): 16px
+ *   - Medium (buttons/inputs): 12px
+ *   - Small (inputs): 8px
+ *   - Circular: 100% or 100px
+ *
+ * Padding:
+ *   - Panels: 20px
+ *   - Buttons: 2px 5px (GTK3) / 3px 8px (Waybar)
+ *   - Inputs: 2px 4px
+ *
+ * COMPATIBILITY NOTES:
+ * --------------------
+ * - GTK3 (gtkgreet): Does NOT support CSS custom properties (--variables).
+ *   Use explicit rgba() values directly.
+ *
+ * - GTK4 (swaync): Supports CSS custom properties. Can use --variable syntax.
+ *
+ * - Waybar: Uses its own CSS format, similar to GTK3. Use explicit values.
+ *
+ * MAINTENANCE:
+ * ------------
+ * When updating colors:
+ * 1. Update the values in this file
+ * 2. Update all three application CSS files to match
+ * 3. Test each application to ensure visual consistency
+ * 4. Prefer gtkgreet.css values when resolving conflicts
+ */
+
+/* ============================================================================
+ * COLOR DEFINITIONS (Reference Only - Copy to target files)
+ * ============================================================================ */
+
+/* Background Colors */
+/* rgba(20, 20, 30, 0.78) - gtkgreet panel background */
+/* rgba(20, 20, 30, 0.85) - waybar/swaync panel background */
+/* rgb(14, 14, 22) - darker background variant */
+/* rgba(20, 20, 30, 0.92) - popover/menu background */
+
+/* Border Colors */
+/* rgba(255, 255, 255, 0.10) - standard border (gtkgreet preferred) */
+/* rgba(255, 255, 255, 0.08) - subtle border (waybar/swaync) */
+
+/* Hover States */
+/* rgba(255, 255, 255, 0.08) - standard hover */
+/* rgba(255, 255, 255, 0.12) - strong hover */
+/* rgba(255, 255, 255, 0.14) - active/focus state */
+
+/* Surface Colors */
+/* rgba(255, 255, 255, 0.04) - input field background */
+
+/* Text Colors */
+/* #e0e0e0 - normal text */
+/* #ffffff - strong text (headings, active states) */
+/* rgba(224, 224, 224, 0.55) - disabled text */
+
+/* ============================================================================
+ * COMMON STYLES (Reference Only - Copy to target files)
+ * ============================================================================ */
+
+/* Font Family (use in all files) */
+/* font-family: "Liberation Sans", "Inter", "Noto Sans", "DejaVu Sans", sans-serif; */
+
+/* Border Radius */
+/* 16px - main panels, containers */
+/* 12px - medium elements (buttons in waybar) */
+/* 8px - small inputs, buttons */
+
+/* Box Shadow */
+/* 0 4px 20px rgba(0, 0, 0, 0.3) - standard shadow */
+/* 0 6px 30px rgba(0, 0, 0, 0.35) - strong shadow (gtkgreet) */
+
+/* Transitions */
+/* background 0.15s ease-in-out - hover transitions */
+

@@ -1,3 +1,12 @@
+/* Archx "Liquid Glass" Theme for Waybar
+ * 
+ * This theme is based on the unified Archx theme defined in:
+ *   dotfiles/gtk-theme-base.css
+ * 
+ * When modifying colors, update gtk-theme-base.css first, then propagate
+ * values here. For style conflicts, prefer solutions from gtkgreet.css.
+ */
+
 * {
     border: none;
     font-family: "Liberation Sans", "Noto Sans", "Font Awesome 6 Free", "Inter", "DejaVu Sans", "Liberation Sans", sans-serif;
@@ -21,7 +30,7 @@ window#waybar {
     margin: 2px 4px;
     padding: 0px 2px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .modules-left {
@@ -210,7 +219,7 @@ tooltip {
     background: rgba(20, 20, 30, 0.95);
     border-radius: 12px;
     padding: 8px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.10);
     color: #e0e0e0;
     font-size: 11px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);

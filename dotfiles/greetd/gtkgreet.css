@@ -1,5 +1,11 @@
 /* gtkgreet theme (Archx "liquid glass")
  *
+ * This theme is based on the unified Archx theme defined in:
+ *   dotfiles/gtk-theme-base.css
+ * 
+ * This file serves as the PREFERRED reference implementation for the theme.
+ * When there are style conflicts, solutions from this file should be preferred.
+ *
  * Apply via: gtkgreet -l -s /etc/greetd/gtkgreet.css
  * Background uses the shared greeter wallpaper symlink created by archx:
  *   /etc/archx/greeter/wallpaper -> dotfiles/archx/wallpaper
