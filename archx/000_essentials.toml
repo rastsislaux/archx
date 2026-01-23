@@ -5,7 +5,7 @@ version = 1
 description = "Prerequisistes for the setup"
 
 [[packages]]
-names = ["git", "base-devel", "npm"]
+names = ["git", "base-devel", "npm", "fuse"]
 
 [[shell]]
 script = """
