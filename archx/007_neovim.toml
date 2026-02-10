@@ -1,0 +1,19 @@
+# ===== My neovim setup (beta) =====
+
+version = 1
+description = "Neovim"
+
+[[symlink]]
+source = "dotfiles/neovim"
+target = "~/.config/nvim"
+
+[[script]]
+script = """
+curl -fLo "~/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"""
+
+[[packages]]
+names = [
+  "neovim"
+]
+

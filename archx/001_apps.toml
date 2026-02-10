@@ -10,7 +10,6 @@ names = [
     "brightnessctl",
     "chromium",
     "nano",
-    "lite-xl",
     "kitty",
     "networkmanager",
     "yazi",
